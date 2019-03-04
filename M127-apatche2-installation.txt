@@ -1,0 +1,121 @@
+// developer:   Daan de Dios
+// date:        2019-03-04
+// function:    apatche2 install
+
+
+{-} block are optional
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Update your local package index:
+-------------------------------------
+sudo apt update
+-------------------------------------
+
+
+2. Install the apache2 package:
+-------------------------------------
+sudo apt install apache2
+-------------------------------------
+
+
+
+
+{3. Check the available ufw application profiles: }
+{-------------------------------------------------}
+{sudo ufw app list                                }
+{-------------------------------------------------}
+
+{4. enable the most restrictive profile           }
+{-------------------------------------------------}
+{sudo ufw allow 'Apache'                          }
+{-------------------------------------------------}
+
+{5. check status
+{-------------------------------------------------}
+{sudo ufw status                                  }
+{-------------------------------------------------}
+
+
+
+6. check system service status
+-------------------------------------------------
+sudo systemctl status apache2
+-------------------------------------------------
+
+
+7. check if your server is running in the browser
+-------------------------------------------------
+http://your_server_ip
+-------------------------------------------------
+
+
+8.  Setting Up Virtual Hosts
+-------------------------------------------------
+sudo mkdir -p /var/www/<name>.com/html
+-------------------------------------------------
+
+
+9. set permission
+-------------------------------------------------
+sudo -R www-data:www-data /var/www/
+-------------------------------------------------
+
+
+10. creat index.html
+-------------------------------------------------
+nano /var/www/daan.com/html/index.html
+
+<html>
+    <head>
+        <title>Welcome to Example.com!</title>
+    </head>
+    <body>
+        <h1>Success!  The example.com server block is working!</h1>
+    </body>
+</html>
+-------------------------------------------------
+
+
+11. Make a new virtual host file at /etc/apache2/sites-available/<name>.conf
+-----------------------------------------------------------------------------------
+sudo nano /etc/apache2/sites-available/<name>.conf
+
+<VirtualHost *:80>
+    ServerAdmin <name>
+    ServerName <name>.com
+    ServerAlias www.<name>.com
+    DocumentRoot /var/www/<name>.com/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+-----------------------------------------------------------------------------------
+
+
+12. Enable the file with a2ensite
+-------------------------------------------------
+sudo a2ensite <name>.com.conf
+-------------------------------------------------
+
+
+
+
+{14. Disable the default site defined in 000-default.conf }
+{---------------------------------------------------------}
+{sudo a2dissite 000-default.conf                          }
+{---------------------------------------------------------}
+
+
+
+
+15. Test for configuration errors
+------------------------------
+sudo apache2ctl configtest
+------------------------------
+
+
+13. restart Apache2
+------------------------------
+sudo systemctl restart apache2
+------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
