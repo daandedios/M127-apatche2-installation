@@ -64,7 +64,7 @@ sudo -R www-data:www-data /var/www/
 
 10. creat index.html
 -------------------------------------------------
-nano /var/www/daan.com/html/index.html
+nano /var/www/<name>.com/html/index.html
 
 <html>
     <head>
