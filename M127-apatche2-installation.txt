@@ -77,7 +77,7 @@ nano /var/www/<name>.com/html/index.html
 -------------------------------------------------
 
 
-11. Make a new virtual host file at /etc/apache2/sites-available/<name>.conf
+11. Make a new virtual host file at /etc/apache2/sites-available/<name>.com.conf
 -----------------------------------------------------------------------------------
 sudo nano /etc/apache2/sites-available/<name>.com.conf
 
