@@ -58,7 +58,7 @@ sudo mkdir -p /var/www/<name>.com/html
 
 9. set permission
 -------------------------------------------------
-sudo -R www-data:www-data /var/www/
+sudo chown -R www-data:www-data /var/www/
 -------------------------------------------------
 
 
@@ -79,7 +79,7 @@ nano /var/www/<name>.com/html/index.html
 
 11. Make a new virtual host file at /etc/apache2/sites-available/<name>.conf
 -----------------------------------------------------------------------------------
-sudo nano /etc/apache2/sites-available/<name>.conf
+sudo nano /etc/apache2/sites-available/<name>.com.conf
 
 <VirtualHost *:80>
     ServerAdmin <name>
